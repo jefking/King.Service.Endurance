@@ -18,7 +18,6 @@ namespace Generation
         {
             var config = new Config()
             {
-
             };
 
             return this.manager.OnStart(config);

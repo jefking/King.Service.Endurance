@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Models\Config.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="Models\Datum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\Collector.cs" />
     <Compile Include="WorkerRole.cs" />

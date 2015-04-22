@@ -19,13 +19,15 @@
 
         public override void Run()
         {
-            var entity = new Datum();
-            entity.PartitionKey = string.Format("{0}", this.seconds);
-            entity.RowKey = DateTime.UtcNow.ToString();
-            entity.EveryTotalMilliseconds = base.Every.TotalMilliseconds;
-            entity.ServiceName = base.ServiceName;
+            var entity = new Datum()
+            {
+                PartitionKey = "",//string.Format("{0}", this.seconds),
+                RowKey = "",//DateTime.UtcNow.ToString(),
+                EveryMs = "",//base.Every.TotalMilliseconds.ToString(),
+                ServiceName = base.ServiceName,
+            };
 
-            this.table.InsertOrReplace(entity);
+            this.table.InsertOrReplace(entity).Wait();
         }
     }
 }

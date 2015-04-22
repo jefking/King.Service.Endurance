@@ -4,7 +4,7 @@
 
     public class Datum : TableEntity
     {
-        public double EveryTotalMilliseconds
+        public string EveryMs
         {
             get;
             set;

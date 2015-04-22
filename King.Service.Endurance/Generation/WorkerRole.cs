@@ -1,65 +1,34 @@
-using Microsoft.WindowsAzure.ServiceRuntime;
-using System.Diagnostics;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Generation
 {
+    using King.Service;
+    using Microsoft.WindowsAzure.ServiceRuntime;
+
     public class WorkerRole : RoleEntryPoint
     {
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        private readonly ManualResetEvent runCompleteEvent = new ManualResetEvent(false);
+        private RoleTaskManager<Config> manager = new RoleTaskManager<Config>(new Factory());
 
         public override void Run()
         {
-            Trace.TraceInformation("Generation is running");
+            this.manager.Run();
 
-            try
-            {
-                this.RunAsync(this.cancellationTokenSource.Token).Wait();
-            }
-            finally
-            {
-                this.runCompleteEvent.Set();
-            }
+            base.Run();
         }
 
         public override bool OnStart()
         {
-            // Set the maximum number of concurrent connections
-            ServicePointManager.DefaultConnectionLimit = 12;
+            var config = new Config()
+            {
 
-            // For information on handling configuration changes
-            // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
+            };
 
-            bool result = base.OnStart();
-
-            Trace.TraceInformation("Generation has been started");
-
-            return result;
+            return this.manager.OnStart(config);
         }
 
         public override void OnStop()
         {
-            Trace.TraceInformation("Generation is stopping");
-
-            this.cancellationTokenSource.Cancel();
-            this.runCompleteEvent.WaitOne();
+            this.manager.OnStop();
 
             base.OnStop();
-
-            Trace.TraceInformation("Generation has stopped");
-        }
-
-        private async Task RunAsync(CancellationToken cancellationToken)
-        {
-            // TODO: Replace the following with your own logic.
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                Trace.TraceInformation("Working");
-                await Task.Delay(1000);
-            }
         }
     }
 }

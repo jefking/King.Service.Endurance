@@ -1,7 +1,7 @@
 ﻿namespace Generation.Tasks
 {
     using King.Azure.Data;
-using King.Service;
+    using King.Service;
 
     public class Collector : RecurringTask
     {

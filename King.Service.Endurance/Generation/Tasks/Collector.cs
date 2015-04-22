@@ -27,8 +27,8 @@
                 RowKey = Guid.NewGuid().ToString(),
                 EveryMs = (int)base.Every.TotalMilliseconds,
                 ServiceName = base.ServiceName,
-                Now = now,
-                LastRun = now,
+                Now = now.Ticks,
+                LastRun = now.Ticks,
             };
 
             this.table.InsertOrReplace(entity).Wait();

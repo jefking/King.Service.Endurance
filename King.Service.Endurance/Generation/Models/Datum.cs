@@ -15,12 +15,12 @@
             get;
             set;
         }
-        public DateTime LastRun
+        public long LastRun
         {
             get;
             set;
         }
-        public DateTime Now
+        public long Now
         {
             get;
             set;

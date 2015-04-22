@@ -1,13 +1,16 @@
 ﻿namespace Generation.Tasks
 {
-    using King.Service;
+    using King.Azure.Data;
+using King.Service;
 
     public class Collector : RecurringTask
     {
-        public Collector(int seconds)
+        private readonly ITableStorage table;
+
+        public Collector(int seconds, ITableStorage table)
             :base(15, seconds)
         {
-
+            this.table = table;
         }
 
         public override void Run()

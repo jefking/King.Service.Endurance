@@ -1,14 +1,17 @@
 ﻿namespace Generation
 {
+    using Generation.Models;
+    using King.Azure.Data;
     using King.Service;
-    using System;
+    using King.Service.Data;
     using System.Collections.Generic;
 
     public class Factory : ITaskFactory<Config>
     {
         public IEnumerable<IRunnable> Tasks(Config config)
         {
-            throw new NotImplementedException();
+            var table = new TableStorage(config.TableName, config.StorageConnectionString);
+            yield return new InitializeStorageTask(table);
         }
     }
 }

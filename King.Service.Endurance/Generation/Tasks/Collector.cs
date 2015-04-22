@@ -28,7 +28,7 @@
                 EveryMs = (int)base.Every.TotalMilliseconds,
                 ServiceName = base.ServiceName,
                 Now = now.Ticks,
-                LastRun = now.Ticks,
+                LastRun = lastRun == null ? 0 : lastRun.Value.Ticks,
             };
 
             this.table.InsertOrReplace(entity).Wait();

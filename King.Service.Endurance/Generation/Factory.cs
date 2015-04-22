@@ -14,7 +14,7 @@
             var table = new TableStorage(config.TableName, config.StorageConnectionString);
             yield return new InitializeStorageTask(table);
 
-            for (var i = 1; i <= 180; i += i)
+            for (var i = 1; i <= 256; i += i)
             {
                 yield return new Collector(i, table);
             }

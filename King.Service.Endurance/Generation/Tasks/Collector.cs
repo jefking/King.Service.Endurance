@@ -9,6 +9,7 @@
     {
         private readonly ITableStorage table;
         private readonly int seconds = 0;
+        private DateTime? lastRun = null;
 
         public Collector(int seconds, ITableStorage table)
             :base(15, seconds)
@@ -19,15 +20,20 @@
 
         public override void Run()
         {
+            var now = DateTime.UtcNow;
             var entity = new Datum()
             {
-                PartitionKey = "",//string.Format("{0}", this.seconds),
-                RowKey = "",//DateTime.UtcNow.ToString(),
-                EveryMs = "",//base.Every.TotalMilliseconds.ToString(),
+                PartitionKey = string.Format("{0}", this.seconds),
+                RowKey = Guid.NewGuid().ToString(),
+                EveryMs = (int)base.Every.TotalMilliseconds,
                 ServiceName = base.ServiceName,
+                Now = now,
+                LastRun = now,
             };
 
             this.table.InsertOrReplace(entity).Wait();
+
+            this.lastRun = now;
         }
     }
 }

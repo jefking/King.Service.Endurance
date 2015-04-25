@@ -11,7 +11,7 @@
         {
             var config = new Config()
             {
-                TableName = "telemerty",
+                TableName = "webjobtelemerty",
                 StorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=endurance;AccountKey=f8g4QSn8Zkco7DXK1yGbgi2n8r8NZCdu6sNWcZ8TDF0HczlKmPtgWTqYEnr6BOCF2NlwJzlMXmHeGJRB+HVjCA==;",
             };
             var manager = new RoleTaskManager<Config>(new Factory());

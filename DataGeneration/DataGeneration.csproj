@@ -33,10 +33,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="King.Azure">
-      <HintPath>..\King.Service.Endurance\packages\King.Azure.1.1.18\lib\net45\King.Azure.dll</HintPath>
+      <HintPath>..\packages\King.Azure.1.1.18\lib\net45\King.Azure.dll</HintPath>
     </Reference>
     <Reference Include="King.Service">
-      <HintPath>..\King.Service.Endurance\packages\King.Service.1.9.5\lib\net45\King.Service.dll</HintPath>
+      <HintPath>..\packages\King.Service.1.9.5\lib\net45\King.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.WebJobs">
+      <HintPath>..\packages\Microsoft.Azure.WebJobs.Core.1.0.1\lib\net45\Microsoft.Azure.WebJobs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Azure.WebJobs.Host">
+      <HintPath>..\packages\Microsoft.Azure.WebJobs.1.0.1\lib\net45\Microsoft.Azure.WebJobs.Host.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,12 +53,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\King.Service.Endurance\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.WebJobs">
-      <HintPath>..\King.Service.Endurance\packages\Microsoft.Azure.WebJobs.Core.1.0.0\lib\net45\Microsoft.Azure.WebJobs.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Azure.WebJobs.Host">
-      <HintPath>..\King.Service.Endurance\packages\Microsoft.Azure.WebJobs.1.0.0\lib\net45\Microsoft.Azure.WebJobs.Host.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Edm, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\King.Service.Endurance\packages\Microsoft.Data.Edm.5.6.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>

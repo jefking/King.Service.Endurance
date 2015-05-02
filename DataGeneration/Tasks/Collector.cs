@@ -21,17 +21,21 @@
         public override void Run()
         {
             var now = DateTime.UtcNow;
-            var entity = new Datum()
-            {
-                PartitionKey = string.Format("{0}", this.seconds),
-                RowKey = Guid.NewGuid().ToString(),
-                EveryMs = (int)base.Every.TotalMilliseconds,
-                ServiceName = base.ServiceName,
-                Now = now.Ticks,
-                LastRun = lastRun == null ? 0 : lastRun.Value.Ticks,
-            };
 
-            this.table.InsertOrReplace(entity).Wait();
+            if (lastRun.HasValue)
+            {
+                var entity = new Datum()
+                {
+                    PartitionKey = string.Format("{0}", this.seconds),
+                    RowKey = Guid.NewGuid().ToString(),
+                    EveryMs = (int)base.Every.TotalMilliseconds,
+                    ServiceName = base.ServiceName,
+                    Now = now.Ticks,
+                    LastRun = lastRun == null ? 0 : lastRun.Value.Ticks,
+                };
+
+                this.table.InsertOrReplace(entity).Wait();
+            }
 
             this.lastRun = now;
         }
